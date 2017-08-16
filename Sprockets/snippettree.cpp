@@ -159,7 +159,7 @@ SnippetTree::SnippetTree (QWidget *parent) : QTreeView (parent) {
 void SnippetTree::createActions () {
 	m_addCategory = new QAction ("Add Category", this);
 
-	connect(m_addCategory, SIGNAL(triggered()), this, SLOT(addedCategory ()));
+	connect(m_addCategory, SIGNAL(triggered()), this, SLOT(addCategory ()));
 }
 
 void SnippetTree::addCategory() {
