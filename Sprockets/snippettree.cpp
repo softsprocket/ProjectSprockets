@@ -8,6 +8,7 @@
 #include <QMenu>
 #include <QVBoxLayout>
 #include <QHBoxLayout>
+#include <QItemSelection>
 
 QModelIndex SnippetModel::index (int row, int column, const QModelIndex& parent) const {
 	if (!hasIndex (row, column, parent)) {
@@ -184,9 +185,10 @@ void SnippetTree::contextMenuEvent (QContextMenuEvent* e) {
 	contextMenu.exec (e->globalPos ());
 }
 
-CategoryDialog::CategoryDialog (QWidget *parent) : QDialog (parent) {
-		QVBoxLayout* layout = new QVBoxLayout (this);
-		setLayout (layout);
-		QHBoxLayout* text = new QHBoxLayout (this);
+void SnippetTree::selectionChanged (const QItemSelection &selected, const QItemSelection &deselected) {
+	QModelIndexList list = selected.indexes ();
+	SnippetTreeItem* item = static_cast<SnippetTreeItem*>(list[0].internalPointer ());
 
+	emit selection (item);
 }
+

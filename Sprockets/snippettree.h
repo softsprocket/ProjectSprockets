@@ -11,6 +11,7 @@
 
 class Snippet;
 class QAction;
+class QItemSelection;
 
 enum SnippetTreeItemType {
 	ROOT,
@@ -75,8 +76,9 @@ public:
 	explicit SnippetTree (QWidget* parent = 0);
 protected:
 	void contextMenuEvent (QContextMenuEvent * e);
+	void selectionChanged (const QItemSelection & selected, const QItemSelection & deselected);
 signals:
-
+	void selection (SnippetTreeItem*);
 public slots:
 	void addCategory ();
 private:
